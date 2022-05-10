@@ -6,7 +6,6 @@ import webbrowser
 import os
 import time
 import subprocess
-from ecapture import ecapture as ec
 import wolframalpha
 import json
 import requests
@@ -14,9 +13,10 @@ import requests
 
 print('Loading your AI personal assistant - nancy')
 
+listener = sr.Recognizer()
 engine=pyttsx3.init('sapi5')
 voices=engine.getProperty('voices')
-engine.setProperty('voice','voices[1].id')
+engine.setProperty('voice',voices[1].id)
 
 
 def speak(text):
@@ -68,8 +68,7 @@ if __name__=='__main__':
             print('your personal assistant nancy is shutting down,Good bye')
             break
 
-
-
+        
         if 'wikipedia' in statement:
             speak('Searching Wikipedia...')
             statement =statement.replace("wikipedia", "")
@@ -129,15 +128,15 @@ if __name__=='__main__':
             strTime=datetime.datetime.now().strftime("%H:%M:%S")
             speak(f"the time is {strTime}")
 
-        elif 'who are you' in statement or 'what can you do' in statement:
+        elif 'who are you' in statement or 'what can you do' in statement or 'Tell me about you' in statement:
             speak('I am nancy version 1 point O your persoanl assistant. I am programmed to minor tasks like'
                   'opening youtube,google chrome,gmail and stackoverflow ,predict time,take a photo,search wikipedia,predict weather' 
                   'in different cities , get top headline news from times of india and you can ask me computational or geographical questions too!')
 
 
         elif "who made you" in statement or "who created you" in statement or "who discovered you" in statement:
-            speak("I was built by Nithish")
-            print("I was built by Nithish")
+            speak("I was built by Nithish, Sivaranjani, Sneha")
+            print("I was built by Nithish, Sivaranjani, Sneha")
 
         elif "open stackoverflow" in statement:
             webbrowser.open_new_tab("https://stackoverflow.com/login")
@@ -147,9 +146,6 @@ if __name__=='__main__':
             news = webbrowser.open_new_tab("https://timesofindia.indiatimes.com/home/headlines")
             speak('Here are some headlines from the Times of India,Happy reading')
             time.sleep(6)
-
-        elif "camera" in statement or "take a photo" in statement:
-            ec.capture(0,"robo camera","img.jpg")
 
         elif 'search'  in statement:
             statement = statement.replace("search", "")

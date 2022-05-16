@@ -1,2 +1,2 @@
 # Personalized-voice-assistant
-voice assistant using python
+virtual voice assistant using python
